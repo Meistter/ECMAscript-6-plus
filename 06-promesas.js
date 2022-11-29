@@ -11,11 +11,11 @@ const miFuncion = () => {
 
 
 miFuncion().then(response => console.log(response)).catch(err => console.log(err))
-                                                //then es un metodo usable en promesas
-                                                //en este caso se le esta dando como parametro una arrow function
-                                                //que recibe response como parametro y muestra por consola como salida
-                                                //el catch se usa para capturar el error y mostrarlo por consola
-                                                //(en caso de haberlo)    
+//                                                 then es un metodo usable en promesas
+//                                                 en este caso se le esta dando como parametro una arrow function
+//                                                 que recibe response como parametro y muestra por consola como salida
+//                                                 el catch se usa para capturar el error y mostrarlo por consola
+//                                                 (en caso de haberlo)    
 
 
 // Explicacion de las promesas
@@ -50,10 +50,14 @@ const getDatos = () => {
 const getDatos2 = () => {
     
     return new Promise((resolve, reject) => {
+        if (datos.length === 0){
+            reject(new Error('no existen datos'))
+        }
         setTimeout(() => {
             resolve(datos)
             }, 1500)
     })
+    
     
 }
 // para llamarlo y imprimirlo por consola (en este caso) usamos
@@ -62,4 +66,25 @@ getDatos2()
         .then((datos) => console.log(datos))
         .catch(err => console.log(err))
 
-//                  otra forma de trabajar es con el ASYNC AWAIT
+//                   otra forma de trabajar es con el ASYNC AWAIT
+
+async function fetchingData(){ //es importante para usar un await que se encuentre dentro de una funcion async
+    const misDatos = await getDatos2()       
+    console.log(misDatos); 
+}
+fetchingData() //a diferencia del Promise aqui llamamos la funcion sola
+
+//toda esta estructura reemplaza el .then sin embargo al parecer igual se hace uso de las promesas
+
+//todo esto puede ser envuelto en un try catch para evitar errores
+
+async function fetchingData(){ 
+    try{
+        const misDatos = await getDatos2()       
+        console.log(misDatos);
+    } catch(err){
+        console.log(err.message);
+    }
+     
+}
+fetchingData()
