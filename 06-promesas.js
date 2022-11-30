@@ -88,3 +88,43 @@ async function fetchingData(){
      
 }
 fetchingData()
+
+
+// Ejercicio:
+// Archivo 1:
+export default async function getData() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([{
+                movie: "El despertar de los michis",
+                year: 2021,
+                protagonist: "Mr. Michi"
+            }, {
+                movie: "101 Michis",
+                year: 2019,
+                protagonist: "Tommy Michiguire"
+            }]);
+        }, 1000);
+    });
+}
+// Archivo 2 (solucion):
+
+import getData from "./api.js"
+export function solution() {
+  return getData().then(response => response).catch(err => err)
+}
+
+
+
+// otra forma
+
+export async function solution() {
+  const datos = await getData()
+  return datos;
+}
+
+// otra forma para esto es: 
+
+export async function solution() {
+    return await getData()    
+  }
