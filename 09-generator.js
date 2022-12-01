@@ -17,3 +17,25 @@ console.log(it.next().value);
 console.log(it.next().value);
 
 // En cada ejecucion llama al siguiente elemento del array, cuando termina el array devuelve undefined
+
+
+
+ejercicio
+
+export function* getId() {
+    let numero = 0
+    let id2
+    while (true) {
+      numero++
+      yield id2 = `Michi${numero}`
+    }
+    
+    
+  }
+
+//   input
+
+const id = getId()
+id.next().value
+id.next().value
+id.next().value
